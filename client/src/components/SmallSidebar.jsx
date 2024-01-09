@@ -4,6 +4,7 @@ import { useDashboardContext } from '../pages/DashboardLayout';
 import links from '../utils/links';
 import Logo from './Logo';
 import { NavLink } from 'react-router-dom';
+import NavLinks from './NavLinks';
 
 const SmallSidebar = () => {
   // dashboard context
@@ -23,23 +24,7 @@ const SmallSidebar = () => {
           <header>
             <Logo />
           </header>
-          <div className="nav-links">
-            {links.map((link) => {
-              const { text, path, icon } = link;
-              return (
-                <NavLink
-                  to={path}
-                  key={text}
-                  className="nav-link"
-                  onClick={toggleSidebar}
-                  end
-                >
-                  <span className="icon">{icon}</span>
-                  {text}
-                </NavLink>
-              );
-            })}
-          </div>
+          <NavLinks />
         </div>
       </div>
     </Wrapper>
