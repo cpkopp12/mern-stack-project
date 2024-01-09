@@ -1,8 +1,10 @@
+// IMPORTS --------------------------------
 import { useDashboardContext } from '../pages/DashboardLayout';
 import links from '../utils/links';
 import { NavLink } from 'react-router-dom';
 
-const NavLinks = () => {
+// COMPONENT ------------------------------------
+const NavLinks = ({ isBigSidebar }) => {
   //dashboard context
   const { toggleSidebar, user } = useDashboardContext();
 
@@ -15,7 +17,7 @@ const NavLinks = () => {
             to={path}
             key={text}
             className="nav-link"
-            onClick={toggleSidebar}
+            onClick={isBigSidebar ? null : toggleSidebar}
             end
           >
             <span className="icon">{icon}</span>
@@ -26,4 +28,6 @@ const NavLinks = () => {
     </div>
   );
 };
+
+// EXPORT ------------------------
 export default NavLinks;
