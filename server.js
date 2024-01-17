@@ -9,6 +9,7 @@ import morgan from 'morgan';
 import mongoose from 'mongoose';
 // local files
 import jobRouter from './routers/jobRouter.js';
+import errorHandlerMiddleware from './middleware/errorHandlerMiddleware.js';
 
 // APP SETUP ---------------------------------------------------
 if (process.env.NODE_ENV === 'development') {
@@ -33,11 +34,7 @@ app.use('*', (req, res) => {
   res.status(404).json({ mgs: 'not found' });
 });
 
-// error middle ware
-app.use((err, req, res, next) => {
-  console.log(err);
-  res.status(500).json({ msg: 'something went wrong' });
-});
+app.use(errorHandlerMiddleware);
 
 // SET PORT AND LISTEN ----------------------------------------------
 const port = process.env.PORT || 5100;
