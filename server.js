@@ -7,9 +7,11 @@ import express from 'express';
 const app = express();
 import morgan from 'morgan';
 import mongoose from 'mongoose';
+
 // local files
 import jobRouter from './routers/jobRouter.js';
 import errorHandlerMiddleware from './middleware/errorHandlerMiddleware.js';
+import { validateTest } from './middleware/validationMiddleware.js';
 
 // APP SETUP ---------------------------------------------------
 if (process.env.NODE_ENV === 'development') {
@@ -23,9 +25,10 @@ app.use(express.json());
 //   res.send('hello world');
 // });
 
-// app.post('/', (req, res) => {
-//   res.json({ message: 'dataReceived', data: req.body });
-// });
+app.post('/api/v1/test', validateTest, (req, res) => {
+  const { name } = req.body;
+  res.json({ message: `hello ${name}` });
+});
 
 app.use('/api/v1/jobs', jobRouter);
 
