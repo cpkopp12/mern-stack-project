@@ -1,3 +1,4 @@
+// CONSTANTs CORRESPONDING TO JOB MODEL -------------------
 export const JOB_STATUS = {
   PENDING: 'pending',
   INTERVIEW: 'interview',

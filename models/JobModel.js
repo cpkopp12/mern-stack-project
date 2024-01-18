@@ -1,5 +1,6 @@
 // IMPORTS ------------------------------------------------
 import mongoose from 'mongoose';
+import { JOB_STATUS, JOB_TYPE } from '../uitls/constants.js';
 
 // SET UP SCHEMA --------------------------------------------
 const JobSchema = new mongoose.Schema(
@@ -8,13 +9,13 @@ const JobSchema = new mongoose.Schema(
     position: String,
     jobStatus: {
       type: String,
-      enum: ['interview', 'declined', 'pending'],
-      default: 'pending',
+      enum: Object.values(JOB_STATUS),
+      default: JOB_STATUS.PENDING,
     },
     jobType: {
       type: String,
-      enum: ['full-time', 'part-time', 'internship'],
-      default: 'full-time',
+      enum: Object.values(JOB_TYPE),
+      default: JOB_TYPE.FULL_TIME,
     },
     jobLocation: {
       type: String,

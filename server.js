@@ -11,24 +11,12 @@ import mongoose from 'mongoose';
 // local files
 import jobRouter from './routers/jobRouter.js';
 import errorHandlerMiddleware from './middleware/errorHandlerMiddleware.js';
-import { validateTest } from './middleware/validationMiddleware.js';
-
 // APP SETUP ---------------------------------------------------
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
 app.use(express.json());
-
-// TEST ROUTES
-// app.get('/', (req, res) => {
-//   res.send('hello world');
-// });
-
-app.post('/api/v1/test', validateTest, (req, res) => {
-  const { name } = req.body;
-  res.json({ message: `hello ${name}` });
-});
 
 app.use('/api/v1/jobs', jobRouter);
 
