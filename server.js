@@ -11,6 +11,8 @@ import mongoose from 'mongoose';
 // local files
 import jobRouter from './routers/jobRouter.js';
 import errorHandlerMiddleware from './middleware/errorHandlerMiddleware.js';
+import authRouter from './routers/authRouter.js';
+
 // APP SETUP ---------------------------------------------------
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
@@ -19,6 +21,7 @@ if (process.env.NODE_ENV === 'development') {
 app.use(express.json());
 
 app.use('/api/v1/jobs', jobRouter);
+app.use('/api/v1/auth', authRouter);
 
 // 404 catch all
 app.use('*', (req, res) => {

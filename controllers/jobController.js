@@ -2,7 +2,6 @@
 import { StatusCodes } from 'http-status-codes';
 // job model
 import Job from '../models/JobModel.js';
-import { NotFoundError } from '../errors/customErrors.js';
 
 // EXPORT FUNCTIONS ----------------------------
 // get all jobs
