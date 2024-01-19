@@ -1,7 +1,9 @@
 // IMPORTS ----------------------------------
 import { StatusCodes } from 'http-status-codes';
 import User from '../models/UserModel.js';
-import { hashPassword } from '../uitls/passwordUtils.js';
+import { hashPassword, comparePassword } from '../uitls/passwordUtils.js';
+import { UnauthenticatedError } from '../errors/customErrors.js';
+import { createJWT } from '../uitls/tokenUtils.js';
 
 // EXPORT CONTROLLER FUNCTIONS -------------------------------------------
 export const register = async (req, res) => {
@@ -18,5 +20,22 @@ export const register = async (req, res) => {
 };
 
 export const login = async (req, res) => {
-  res.send('login');
+  const user = await User.findOne({ email: req.body.email });
+  // check email
+  if (!user) {
+    throw new UnauthenticatedError('invalid credentials');
+  }
+  // check password
+  const isPasswordCorrect = await comparePassword(
+    req.body.password,
+    user.password
+  );
+  if (!isPasswordCorrect) {
+    throw new UnauthenticatedError('invalid credentials');
+  }
+
+  // jwt token
+  const token = createJWT({ userId: user._id, role: user.role });
+
+  res.json({ token });
 };
