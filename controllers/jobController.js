@@ -6,6 +6,7 @@ import Job from '../models/JobModel.js';
 // EXPORT FUNCTIONS ----------------------------
 // get all jobs
 export const getAllJobs = async (req, res) => {
+  console.log(req.user);
   const jobs = await Job.find({});
   res.status(StatusCodes.OK).json(jobs);
 };
