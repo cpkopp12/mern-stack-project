@@ -6,8 +6,7 @@ import Job from '../models/JobModel.js';
 // EXPORT FUNCTIONS ----------------------------
 // get all jobs
 export const getAllJobs = async (req, res) => {
-  console.log(req.user);
-  const jobs = await Job.find({});
+  const jobs = await Job.find({ createdBy: req.user.userId });
   res.status(StatusCodes.OK).json(jobs);
 };
 
@@ -21,10 +20,8 @@ export const getJobById = async (req, res) => {
 
 // create job
 export const createJob = async (req, res) => {
-  const { company, position } = req.body;
-  // try/catch keeps server running if await func fails
-  // OR EXPRESS_ASYNC_ErRORS PACKAGE, imported in server.js
-  const job = await Job.create({ company, position });
+  req.body.createdBy = req.user.userId;
+  const job = await Job.create(req.body);
   res.status(StatusCodes.CREATED).json({ job });
 };
 
