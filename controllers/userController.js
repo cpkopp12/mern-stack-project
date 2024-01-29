@@ -6,13 +6,22 @@ import Job from '../models/JobModel.js';
 
 // CONTROLLER FUNCTIONS ------------------------------------------
 export const getCurrentUser = async (req, res) => {
-  res.status(StatusCodes.OK).json({ msg: 'get current user' });
+  const user = await User.findOne({ _id: req.user.userId });
+  const userWithoutPassword = user.toJSON();
+  res.status(StatusCodes.OK).json({ user: userWithoutPassword });
 };
 
 export const getApplicationStats = async (req, res) => {
-  res.status(StatusCodes.OK).json({ msg: 'get app stats' });
+  const countUsers = await User.countDocuments();
+  const countJobs = await Job.countDocuments();
+  res.status(StatusCodes.OK).json({ countUsers, countJobs });
 };
 
 export const updateUser = async (req, res) => {
-  res.status(StatusCodes.OK).json({ msg: 'update current user' });
+  // dont return password
+  const obj = { ...req.body };
+  delete obj.password;
+
+  const updatedUser = await User.findByIdAndUpdate(req.user.userId, obj);
+  res.status(StatusCodes.OK).json({ msg: 'user updated', obj });
 };
