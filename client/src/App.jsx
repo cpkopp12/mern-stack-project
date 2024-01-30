@@ -13,6 +13,10 @@ import {
   Admin,
 } from './pages';
 
+// IMPORT ACTIONS ----------------
+import { action as registerAction } from './pages/Register.jsx';
+import { action as loginAction } from './pages/Login.jsx';
+
 // check local storage for theme setting, export function and envoke when setting dashboard context
 export const checkDefaultTheme = () => {
   const isDarkTheme = localStorage.getItem('darkTheme') === 'true';
@@ -35,10 +39,13 @@ const router = createBrowserRouter([
       {
         path: 'register',
         element: <Register />,
+        // react router actions need a return
+        action: registerAction,
       },
       {
         path: 'login',
         element: <Login />,
+        action: loginAction,
       },
       {
         path: 'dashboard',
