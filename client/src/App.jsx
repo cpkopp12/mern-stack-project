@@ -1,4 +1,4 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import {
   HomeLayout,
   Landing,
@@ -11,16 +11,16 @@ import {
   AllJobs,
   Profile,
   Admin,
-} from './pages';
+} from "./pages";
 
 // IMPORT ACTIONS ----------------
-import { action as registerAction } from './pages/Register.jsx';
-import { action as loginAction } from './pages/Login.jsx';
+import { action as registerAction } from "./pages/Register.jsx";
+import { action as loginAction } from "./pages/Login.jsx";
 
 // check local storage for theme setting, export function and envoke when setting dashboard context
 export const checkDefaultTheme = () => {
-  const isDarkTheme = localStorage.getItem('darkTheme') === 'true';
-  document.body.classList.toggle('dark-theme', isDarkTheme);
+  const isDarkTheme = localStorage.getItem("darkTheme") === "true";
+  document.body.classList.toggle("dark-theme", isDarkTheme);
   return isDarkTheme;
 };
 
@@ -28,7 +28,7 @@ checkDefaultTheme();
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <HomeLayout />,
     errorElement: <Error />,
     children: [
@@ -37,18 +37,18 @@ const router = createBrowserRouter([
         element: <Landing />,
       },
       {
-        path: 'register',
+        path: "register",
         element: <Register />,
         // react router actions need a return
         action: registerAction,
       },
       {
-        path: 'login',
+        path: "login",
         element: <Login />,
         action: loginAction,
       },
       {
-        path: 'dashboard',
+        path: "dashboard",
         element: <DasboardLayout />,
         children: [
           {
@@ -56,19 +56,19 @@ const router = createBrowserRouter([
             element: <AddJob />,
           },
           {
-            path: 'stats',
+            path: "stats",
             element: <Stats />,
           },
           {
-            path: 'all-jobs',
+            path: "all-jobs",
             element: <AllJobs />,
           },
           {
-            path: 'profile',
+            path: "profile",
             element: <Profile />,
           },
           {
-            path: 'admin',
+            path: "admin",
             element: <Admin />,
           },
         ],
