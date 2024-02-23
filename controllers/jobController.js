@@ -1,13 +1,13 @@
 // IMPORTS --------------------------------
-import { StatusCodes } from 'http-status-codes';
+import { StatusCodes } from "http-status-codes";
 // job model
-import Job from '../models/JobModel.js';
+import Job from "../models/JobModel.js";
 
 // EXPORT FUNCTIONS ----------------------------
 // get all jobs
 export const getAllJobs = async (req, res) => {
   const jobs = await Job.find({ createdBy: req.user.userId });
-  res.status(StatusCodes.OK).json(jobs);
+  res.status(StatusCodes.OK).json({ jobs });
 };
 
 // get job by id

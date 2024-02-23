@@ -13,11 +13,12 @@ import {
   Admin,
 } from "./pages";
 
-// IMPORT ACTIONS ----------------
+// IMPORT ACTIONS + LOADERS ----------------
 import { action as registerAction } from "./pages/Register.jsx";
 import { action as loginAction } from "./pages/Login.jsx";
 import { action as addJobAction } from "./pages/AddJob.jsx";
 import { loader as dashboardLoader } from "./pages/DashboardLayout.jsx";
+import { loader as allJobsLoader } from "./pages/AllJobs.jsx";
 
 // check local storage for theme setting, export function and envoke when setting dashboard context
 export const checkDefaultTheme = () => {
@@ -66,6 +67,7 @@ const router = createBrowserRouter([
           {
             path: "all-jobs",
             element: <AllJobs />,
+            loader: allJobsLoader,
           },
           {
             path: "profile",
