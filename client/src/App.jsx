@@ -16,6 +16,7 @@ import {
 // IMPORT ACTIONS ----------------
 import { action as registerAction } from "./pages/Register.jsx";
 import { action as loginAction } from "./pages/Login.jsx";
+import { action as addJobAction } from "./pages/AddJob.jsx";
 import { loader as dashboardLoader } from "./pages/DashboardLayout.jsx";
 
 // check local storage for theme setting, export function and envoke when setting dashboard context
@@ -56,6 +57,7 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <AddJob />,
+            action: addJobAction,
           },
           {
             path: "stats",
