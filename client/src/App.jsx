@@ -16,6 +16,7 @@ import {
 // IMPORT ACTIONS ----------------
 import { action as registerAction } from "./pages/Register.jsx";
 import { action as loginAction } from "./pages/Login.jsx";
+import { loader as dashboardLoader } from "./pages/DashboardLayout.jsx";
 
 // check local storage for theme setting, export function and envoke when setting dashboard context
 export const checkDefaultTheme = () => {
@@ -50,6 +51,7 @@ const router = createBrowserRouter([
       {
         path: "dashboard",
         element: <DasboardLayout />,
+        loader: dashboardLoader,
         children: [
           {
             index: true,
