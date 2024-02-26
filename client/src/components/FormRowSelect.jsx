@@ -2,7 +2,7 @@ import React from "react";
 
 // Component ------------------------
 // value list -> use Object.values for arguement
-const FormRowSeclect = ({ name, labelText, valueList, defaultValue = "" }) => {
+const FormRowSelect = ({ name, labelText, valueList, defaultValue = "" }) => {
   return (
     <div className='form-row'>
       <label htmlFor={name} className='form-label'>
@@ -26,4 +26,4 @@ const FormRowSeclect = ({ name, labelText, valueList, defaultValue = "" }) => {
   );
 };
 
-export default FormRowSeclect;
+export default FormRowSelect;

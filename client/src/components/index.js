@@ -5,3 +5,5 @@ export { default as NavBar } from "./NavBar.jsx";
 export { default as SmallSidebar } from "./SmallSidebar.jsx";
 export { default as JobsContainer } from "./JobsContainer.jsx";
 export { default as SearchContainer } from "./SearchContainer.jsx";
+export { default as FormRowSelect } from "./FormRowSelect.jsx";
+export { default as StatItem } from "./StatItem.jsx";

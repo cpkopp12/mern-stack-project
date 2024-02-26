@@ -6,7 +6,7 @@ import { JOB_STATUS, JOB_TYPE } from "../../../uitls/constants.js";
 import { Form, useNavigation, redirect } from "react-router-dom";
 import { toast } from "react-toastify";
 import customFetch from "../utils/customFetch.js";
-import FormRowSeclect from "../components/FormRowSeclect.jsx";
+import FormRowSelect from "../components/FormRowSelect.jsx";
 
 // PAGE ACTION -----------------------
 export const action = async ({ request }) => {
@@ -45,13 +45,13 @@ const AddJob = () => {
             defaultValue={user.location}
           />
           {/* select rows */}
-          <FormRowSeclect
+          <FormRowSelect
             labelText='job status'
             name='jobStatus'
             defaultValue={JOB_STATUS.PENDING}
             valueList={Object.values(JOB_STATUS)}
           />
-          <FormRowSeclect
+          <FormRowSelect
             labelText='job type'
             name='jobType'
             defaultValue={JOB_TYPE.FULL_TIME}

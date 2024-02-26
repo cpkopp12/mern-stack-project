@@ -11,6 +11,7 @@ import {
   AllJobs,
   Profile,
   Admin,
+  EditJob,
 } from "./pages";
 
 // IMPORT ACTIONS + LOADERS ----------------
@@ -19,6 +20,10 @@ import { action as loginAction } from "./pages/Login.jsx";
 import { action as addJobAction } from "./pages/AddJob.jsx";
 import { loader as dashboardLoader } from "./pages/DashboardLayout.jsx";
 import { loader as allJobsLoader } from "./pages/AllJobs.jsx";
+import { action as editJobAction } from "./pages/EditJob.jsx";
+import { loader as editJobLoader } from "./pages/EditJob.jsx";
+import { action as deleteJobAction } from "./pages/DeleteJob.jsx";
+import { loader as adminLoader } from "./pages/Admin.jsx";
 
 // check local storage for theme setting, export function and envoke when setting dashboard context
 export const checkDefaultTheme = () => {
@@ -76,6 +81,17 @@ const router = createBrowserRouter([
           {
             path: "admin",
             element: <Admin />,
+            loader: adminLoader,
+          },
+          {
+            path: "edit-job/:id",
+            element: <EditJob />,
+            action: editJobAction,
+            loader: editJobLoader,
+          },
+          {
+            path: "delete-job/:id",
+            action: deleteJobAction,
           },
         ],
       },

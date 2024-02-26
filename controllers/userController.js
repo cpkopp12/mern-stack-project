@@ -1,20 +1,20 @@
 // IMPORTS --------------------------
-import { StatusCodes } from 'http-status-codes';
+import { StatusCodes } from "http-status-codes";
 // local imports
-import User from '../models/UserModel.js';
-import Job from '../models/JobModel.js';
+import User from "../models/UserModel.js";
+import Job from "../models/JobModel.js";
 
 // CONTROLLER FUNCTIONS ------------------------------------------
 export const getCurrentUser = async (req, res) => {
-  const user = await User.findOne({ _id: req.user.userId });
-  const userWithoutPassword = user.toJSON();
-  res.status(StatusCodes.OK).json({ user: userWithoutPassword });
+  let user = await User.findOne({ _id: req.user.userId });
+  user = user.toJSON();
+  res.status(StatusCodes.OK).json({ user });
 };
 
 export const getApplicationStats = async (req, res) => {
-  const countUsers = await User.countDocuments();
-  const countJobs = await Job.countDocuments();
-  res.status(StatusCodes.OK).json({ countUsers, countJobs });
+  const users = await User.countDocuments();
+  const jobs = await Job.countDocuments();
+  res.status(StatusCodes.OK).json({ users, jobs });
 };
 
 export const updateUser = async (req, res) => {
@@ -23,5 +23,5 @@ export const updateUser = async (req, res) => {
   delete obj.password;
 
   const updatedUser = await User.findByIdAndUpdate(req.user.userId, obj);
-  res.status(StatusCodes.OK).json({ msg: 'user updated', obj });
+  res.status(StatusCodes.OK).json({ msg: "user updated", obj });
 };

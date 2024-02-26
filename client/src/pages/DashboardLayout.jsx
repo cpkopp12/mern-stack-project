@@ -22,7 +22,7 @@ const DashboardContext = createContext();
 // Dashboard Component ----------------------------------------------------
 const DashboardLayout = () => {
   //temp globals
-  const user = useLoaderData();
+  const { user } = useLoaderData();
 
   const navigate = useNavigate();
 
