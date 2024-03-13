@@ -7,6 +7,24 @@ import customFetch from "../utils/customFetch";
 import { toast } from "react-toastify";
 
 // ACTION --------------------------------
+export const action = async ({ request }) => {
+  const formData = await request.formData();
+
+  // formData.get(name), check size of avatar photo file
+  const file = formData.get("avatar");
+  if (file && file.size > 500000) {
+    toast.error("Image file size is too large");
+    return null;
+  }
+
+  try {
+    await customFetch.patch("/users/update-user", formData);
+    toast.success("Profile updated successfully");
+  } catch (error) {
+    toast.error(error?.response?.data?.msg);
+  }
+  return null;
+};
 
 // PAGE COMPONENT -----------------------------------------
 const Profile = () => {
@@ -42,6 +60,13 @@ const Profile = () => {
           <FormRow type='email' name='email' defaultValue={email} />
           <FormRow type='text' name='location' defaultValue={location} />
         </div>
+        <button
+          className='btn btn-block form-btn'
+          type='submit'
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? "submitting..." : "save changes"}
+        </button>
       </Form>
     </Wrapper>
   );

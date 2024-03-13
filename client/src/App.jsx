@@ -24,6 +24,7 @@ import { action as editJobAction } from "./pages/EditJob.jsx";
 import { loader as editJobLoader } from "./pages/EditJob.jsx";
 import { action as deleteJobAction } from "./pages/DeleteJob.jsx";
 import { loader as adminLoader } from "./pages/Admin.jsx";
+import { action as profileAction } from "./pages/Profile.jsx";
 
 // check local storage for theme setting, export function and envoke when setting dashboard context
 export const checkDefaultTheme = () => {
@@ -77,6 +78,7 @@ const router = createBrowserRouter([
           {
             path: "profile",
             element: <Profile />,
+            action: profileAction,
           },
           {
             path: "admin",

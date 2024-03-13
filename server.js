@@ -11,6 +11,7 @@ import cookieParser from "cookie-parser";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 import path from "path";
+import cloudinary from "cloudinary";
 
 // local files
 import jobRouter from "./routers/jobRouter.js";
@@ -20,6 +21,12 @@ import { authenticateUser } from "./middleware/authMiddleware.js";
 import userRouter from "./routers/userRouter.js";
 
 // APP SETUP ---------------------------------------------------
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_API_KEY,
+  api_secret: process.env.CLOUD_API_SECRET,
+});
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 if (process.env.NODE_ENV === "development") {
