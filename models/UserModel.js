@@ -1,5 +1,5 @@
 // IMPORTS --------------------------------------
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const UserSchema = new mongoose.Schema({
   name: String,
@@ -7,17 +7,19 @@ const UserSchema = new mongoose.Schema({
   password: String,
   lastName: {
     type: String,
-    default: 'lastName',
+    default: "lastName",
   },
   location: {
     type: String,
-    default: 'my city',
+    default: "my city",
   },
   role: {
     type: String,
-    enum: ['user', 'admin'],
-    default: 'user',
+    enum: ["user", "admin"],
+    default: "user",
   },
+  avatar: String,
+  avatarPublicId: String,
 });
 
 UserSchema.methods.toJSON = function () {
@@ -27,4 +29,4 @@ UserSchema.methods.toJSON = function () {
 };
 
 // EXPORT MODEL ---------------------------------------
-export default mongoose.model('User', UserSchema);
+export default mongoose.model("User", UserSchema);
