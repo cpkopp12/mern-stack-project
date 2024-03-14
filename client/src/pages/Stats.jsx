@@ -1,4 +1,28 @@
+// IMPORTS -----------------
+import { ChartsContainer, StatsContainer } from "../components";
+import customFetch from "../utils/customFetch";
+import { useLoaderData } from "react-router-dom";
+
+// LOADER ---------------------------
+export const loader = async () => {
+  try {
+    const response = await customFetch.get("/jobs/stats");
+    return response.data;
+  } catch (error) {
+    return error;
+  }
+};
+
+// STATS PAGE COMPONENT -------------------------
 const Stats = () => {
-  return <h1>Stats Page</h1>;
+  const { defaultStats, monthlyApplications } = useLoaderData();
+  return (
+    <>
+      <StatsContainer defaultStats={defaultStats} />
+      {monthlyApplications?.length > 0 && (
+        <ChartsContainer data={monthlyApplications} />
+      )}
+    </>
+  );
 };
 export default Stats;
