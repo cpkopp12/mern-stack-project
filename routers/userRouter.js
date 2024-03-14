@@ -8,6 +8,7 @@ import {
 import { validateUpdateUserInput } from "../middleware/validationMiddleware.js";
 import { authorizePermissions } from "../middleware/authMiddleware.js";
 import upload from "../middleware/multerMiddleware.js";
+import { checkForTestUser } from "../middleware/authMiddleware.js";
 
 // SETUP ROUTER ------------------------------
 const router = Router();
@@ -20,6 +21,7 @@ router.get("/admin/app-stats", [
 // umpload.single(name), name from form data
 router.patch(
   "/update-user",
+  checkForTestUser,
   upload.single("avatar"),
   validateUpdateUserInput,
   updateUser
