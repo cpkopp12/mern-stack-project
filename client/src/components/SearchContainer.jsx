@@ -13,6 +13,18 @@ const SearchContainer = () => {
   // sumbit hook
   const submit = useSubmit();
 
+  // delay for onchange
+  const debounce = (onChange) => {
+    let timeoutId;
+    return (e) => {
+      const form = e.currentTarget.form;
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        onChange(form);
+      }, 2000);
+    };
+  };
+
   return (
     <Wrapper>
       <Form className="Form">
@@ -22,9 +34,9 @@ const SearchContainer = () => {
             type="search"
             name="search"
             defaultValue={search}
-            onChange={(e) => {
-              submit(e.currentTarget.form);
-            }}
+            onChange={debounce((form) => {
+              submit(form);
+            })}
           />
           <FormRowSelect
             labelText="job status"
